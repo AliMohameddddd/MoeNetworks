@@ -7,21 +7,6 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-const MongoStore = require('connect-mongo');
-  app.use(session({
-    store: new MongoStore({
-      mongoUrl: 'mongodb://127.0.0.1:27017'
-    }),
-    secret: '123',
-    resave: false,
-    saveUninitialized: true,
-  }));
-var MongoClient=require('mongodb').MongoClient;
-MongoClient.connect("mongodb://127.0.0.1:27017",function(err,client){
-  if(err) throw err;
-  var db = client.db('myDB');
-  
-});
 app.get("/",function (req,res) {
   res.render('login');
 });
